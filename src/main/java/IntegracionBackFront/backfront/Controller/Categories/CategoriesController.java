@@ -3,25 +3,24 @@ package IntegracionBackFront.backfront.Controller.Categories;
 import IntegracionBackFront.backfront.Exceptions.Category.ExceptionCategoryNotFound;
 import IntegracionBackFront.backfront.Exceptions.Category.ExceptionColumnDuplicate;
 import IntegracionBackFront.backfront.Models.DTO.Categories.CategoryDTO;
-import IntegracionBackFront.backfront.Models.DTO.Products.ProductDTO;
 import IntegracionBackFront.backfront.Services.Categories.CategoryService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/category")
-@CrossOrigin
+@CrossOrigin //Permite conexión desde cualquier lado, no solo localhost
 public class CategoriesController {
 
     //Inyectar la clase service
@@ -46,6 +45,9 @@ public class CategoriesController {
     private ResponseEntity<Map<String, Object>> inserCategory(@Valid @RequestBody CategoryDTO json, HttpServletRequest request){
         try{
             CategoryDTO response =service.insert(json);
+            LocalDate fechaActual = LocalDate.now();
+            json.setFechaCreacion(fechaActual);
+            
             if (response == null){
                 return ResponseEntity.badRequest().body(Map.of(
                         "Error", "Inserción incorrecta",

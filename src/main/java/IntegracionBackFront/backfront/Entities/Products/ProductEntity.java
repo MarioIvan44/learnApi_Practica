@@ -19,19 +19,25 @@ public class ProductEntity {
     @SequenceGenerator(sequenceName = "seq_Productos", name = "seq_Productos", allocationSize = 1)
     @Column(name = "IDPRODUCTO")
     private Long id;
+
     @Column(name = "NOMBREPRODUCTO")
     private String nombre;
+
     @Column(name = "DESCRIPCION")
     private String descripcion;
+
     @Column(name = "PRECIO")
     private double precio;
+
     @Column(name = "STOCK")
     private int stock;
+
     @Column(name = "FECHAINGRESO")
     private LocalDate fechaIngreso;
+
     @Column(name = "IDCATEGORIA")
     private Long categoriaId;
+
     @Column(name = "IDUSUARIOREGISTRO")
     private int usuarioId; //Usuario que lo registro
-
 }
