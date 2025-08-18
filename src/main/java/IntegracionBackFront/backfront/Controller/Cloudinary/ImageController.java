@@ -33,4 +33,20 @@ public class ImageController {
             return ResponseEntity.internalServerError().body("Error al subir imagen");
         }
     }
+
+    @PostMapping("/upload-to-Folder")
+    public ResponseEntity<?> uploadImageTofolder(
+            @RequestParam("image") MultipartFile file,
+            @RequestParam String folder
+    ){
+        try {
+            String imageUrl = cloudinaryService.uploadImage(file, folder);
+            return ResponseEntity.ok(Map.of(
+                    "message", "Imagen subida exitosamente",
+                    "url", imageUrl
+            ));
+        }catch (IOException e){
+            return ResponseEntity.internalServerError().body("Error al subir la imagen");
+        }
+    }
 }
