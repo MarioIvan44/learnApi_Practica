@@ -42,5 +42,5 @@ public class ProductEntity {
     private int usuarioId; //Usuario que lo registro
 
     @Column(name = "IMAGEN_URL")
-    private String imagenUrl;
+    private String imagen_url;
 }

@@ -32,4 +32,5 @@ public class ProductDTO {
     private Long categoriaId;
     private int usuarioId; //Usuario que lo registro
 
+    private String imagen_url;
 }
